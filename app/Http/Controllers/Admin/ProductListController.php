@@ -12,7 +12,7 @@ class ProductListController extends Controller
 
         $remark = $request->remark;
 
-        $productList = ProductList::where('remark', $remark)->get();
+        $productList = ProductList::where('remark', $remark)->limit(8)->get();
 
         return $productList;
     }
