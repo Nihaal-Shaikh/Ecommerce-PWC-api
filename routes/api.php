@@ -24,5 +24,11 @@ Route::get('/allSiteInfo', [SiteInfoController::class, 'AllSiteInfo']);
 // All Category
 Route::get('/allCategory', [CategoryController::class, 'AllCategory']);
 
-// Product List
+// Product List by Remark
 Route::get('/productListByRemark/{remark}', [ProductListController::class, 'ProductListByRemark']);
+
+// Product List by Category
+Route::get('/productListByCategory/{category}', [ProductListController::class, 'ProductListByCategory']);
+
+// Product List by Sub Category
+Route::get('/productListBySubCategory/{category}/{subcategory}', [ProductListController::class, 'ProductListBySubCategory']);
