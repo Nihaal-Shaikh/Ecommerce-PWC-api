@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\ForgotPasswordController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -54,3 +55,6 @@ Route::post('/login', [AuthController::class, 'Login']);
 
 // Register
 Route::post('/register', [AuthController::class, 'Register']);
+
+// Forgot Password 
+Route::post('/forgotPassword',[ForgotPasswordController::class, 'ForgotPassword']);
