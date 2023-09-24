@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\User\AuthController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -47,3 +48,9 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 
 // Search
 Route::get('/search/{key}', [ProductListController::class, 'SearchByProduct']);
+
+// Login
+Route::post('/login', [AuthController::class, 'Login']);
+
+// Register
+Route::post('/register', [AuthController::class, 'Register']);
