@@ -52,6 +52,9 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 // Search
 Route::get('/search/{key}', [ProductListController::class, 'SearchByProduct']);
 
+// Similar Products
+Route::get('/similar/{subCategory}',[ProductListController::class, 'SimilarProducts']);
+
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
 
