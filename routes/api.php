@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\ProductReviewController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgotPasswordController;
 use App\Http\Controllers\User\ResetPasswordController;
@@ -51,6 +52,12 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 
 // Search
 Route::get('/search/{key}', [ProductListController::class, 'SearchByProduct']);
+
+// Similar Products
+Route::get('/similar/{subCategory}',[ProductListController::class, 'SimilarProducts']);
+
+// Similar Products
+Route::get('/productReview/{id}',[ProductReviewController::class, 'ProductReviewList']);
 
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
