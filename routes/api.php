@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductReviewController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgotPasswordController;
 use App\Http\Controllers\User\ResetPasswordController;
@@ -58,6 +59,9 @@ Route::get('/similar/{subCategory}',[ProductListController::class, 'SimilarProdu
 
 // Similar Products
 Route::get('/productReview/{id}',[ProductReviewController::class, 'ProductReviewList']);
+
+// Product Cart
+Route::post('/addToCart',[ProductCartController::class, 'AddToCart']);
 
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
