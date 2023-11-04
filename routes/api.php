@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\ForgotPasswordController;
+use App\Http\Controllers\User\ResetPasswordController;
+use App\Http\Controllers\User\UserController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -47,3 +51,18 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 
 // Search
 Route::get('/search/{key}', [ProductListController::class, 'SearchByProduct']);
+
+// Login
+Route::post('/login', [AuthController::class, 'Login']);
+
+// Register
+Route::post('/register', [AuthController::class, 'Register']);
+
+// Forgot Password 
+Route::post('/forgotPassword',[ForgotPasswordController::class, 'ForgotPassword']);
+
+// Reset Password Routes 
+Route::post('/resetPassword',[ResetPasswordController::class, 'ResetPassword']);
+
+// Current User
+Route::get('/user',[UserController::class, 'User'])->middleware('auth:api');
