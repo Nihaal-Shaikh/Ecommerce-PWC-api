@@ -45,4 +45,12 @@ class ProductCartController extends Controller
 
         return $result;
     }
+
+    public function CartCount(Request $request)
+    {
+        $product_code = $request->product_code;
+        $result = ProductCart::count();
+
+        return $result;
+    }
 }
