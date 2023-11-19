@@ -71,4 +71,30 @@ class ProductCartController extends Controller
 
         return $result;
     }
+
+    public function CartItemPlus(Request $request)
+    {
+        $id = $request->id;
+        $price = $request->price;
+        $quantity = $request->quantity;
+        
+        $newQuantity = $quantity + 1;
+        $totalPrice = $newQuantity * $price;
+
+        $result = ProductCart::where('id', $id)->update(['quantity' => $newQuantity, 'total_price' => $totalPrice]);
+        return $result;
+    }
+
+    public function CartItemMinus(Request $request)
+    {
+        $id = $request->id;
+        $price = $request->price;
+        $quantity = $request->quantity;
+        
+        $newQuantity = $quantity - 1;
+        $totalPrice = $newQuantity * $price;
+
+        $result = ProductCart::where('id', $id)->update(['quantity' => $newQuantity, 'total_price' => $totalPrice]);
+        return $result;
+    }
 }

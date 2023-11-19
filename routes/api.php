@@ -82,6 +82,12 @@ Route::get('/cartList/{email}',[ProductCartController::class, 'CartList']);
 // Remove from Cart
 Route::get('/removeCartItem/{id}',[ProductCartController::class, 'RemoveCartItem']);
 
+// Cart Quantity Plus
+Route::get('/cartItemPlus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemPlus']);
+
+// Cart Quantity Minus
+Route::get('/cartItemMinus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemMinus']);
+
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
 
