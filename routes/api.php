@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductReviewController;
 use App\Http\Controllers\Admin\ProductCartController;
+use App\Http\Controllers\Admin\FavouritesController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgotPasswordController;
 use App\Http\Controllers\User\ResetPasswordController;
@@ -65,6 +66,15 @@ Route::post('/addToCart',[ProductCartController::class, 'AddToCart']);
 
 // Cart Count
 Route::get('/cartCount/{productCode}',[ProductCartController::class, 'CartCount']);
+
+// Favourites
+Route::get('/favourite/{productCode}/{email}',[FavouritesController::class, 'AddFavourite']);
+
+// Favourite List
+Route::get('/favouriteList/{email}',[FavouritesController::class, 'FavouriteList']);
+
+// Remove Favourite
+Route::get('/removeFavourite/{productCode}/{email}',[FavouritesController::class, 'FavouriteRemove']);
 
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
