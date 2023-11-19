@@ -76,6 +76,9 @@ Route::get('/favouriteList/{email}',[FavouritesController::class, 'FavouriteList
 // Remove Favourite
 Route::get('/removeFavourite/{productCode}/{email}',[FavouritesController::class, 'FavouriteRemove']);
 
+// Cart List
+Route::get('/cartList/{email}',[ProductCartController::class, 'CartList']);
+
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
 

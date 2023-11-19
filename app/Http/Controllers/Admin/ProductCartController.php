@@ -53,4 +53,13 @@ class ProductCartController extends Controller
 
         return $result;
     }
+
+    public function CartList(Request $request)
+    {
+        $email = $request->email;
+
+        $result = ProductCart::where('email', $email)->get();
+
+        return $result;
+    }
 }
