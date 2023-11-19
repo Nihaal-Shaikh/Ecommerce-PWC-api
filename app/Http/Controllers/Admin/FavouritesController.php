@@ -26,4 +26,14 @@ class FavouritesController extends Controller
 
         return $result;
     }
+
+    public function FavouriteList(Request $request)
+    {
+        $email = $request->email;
+        error_log('email: '. $email);
+
+        $result = Favourites::where('email', $email)->get();
+
+        return $result;
+    }
 }

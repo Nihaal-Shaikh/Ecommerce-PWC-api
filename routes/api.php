@@ -70,6 +70,9 @@ Route::get('/cartCount/{productCode}',[ProductCartController::class, 'CartCount'
 // Favourites
 Route::get('/favourite/{productCode}/{email}',[FavouritesController::class, 'AddFavourite']);
 
+// Favourite List
+Route::get('/favouriteList/{email}',[FavouritesController::class, 'FavouriteList']);
+
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
 
