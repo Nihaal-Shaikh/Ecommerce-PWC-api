@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductCart;
 use App\Models\ProductList;
+use App\Models\CartOrder;
 
 class ProductCartController extends Controller
 {
@@ -52,5 +53,101 @@ class ProductCartController extends Controller
         $result = ProductCart::count();
 
         return $result;
+    }
+
+    public function CartList(Request $request)
+    {
+        $email = $request->email;
+
+        $result = ProductCart::where('email', $email)->get();
+
+        return $result;
+    }
+
+    public function RemoveCartItem(Request $request)
+    {
+        $id = $request->id;
+
+        $result = ProductCart::where('id', $id)->delete();
+
+        return $result;
+    }
+
+    public function CartItemPlus(Request $request)
+    {
+        $id = $request->id;
+        $price = $request->price;
+        $quantity = $request->quantity;
+        
+        $newQuantity = $quantity + 1;
+        $totalPrice = $newQuantity * $price;
+
+        $result = ProductCart::where('id', $id)->update(['quantity' => $newQuantity, 'total_price' => $totalPrice]);
+        return $result;
+    }
+
+    public function CartItemMinus(Request $request)
+    {
+        $id = $request->id;
+        $price = $request->price;
+        $quantity = $request->quantity;
+        
+        $newQuantity = $quantity - 1;
+        $totalPrice = $newQuantity * $price;
+
+        $result = ProductCart::where('id', $id)->update(['quantity' => $newQuantity, 'total_price' => $totalPrice]);
+        return $result;
+    }
+
+    public function CartOrder(Request $request)
+    {
+        $city = $request->input('city');
+        $payment_method = $request->input('payment_method');
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $delivery_address = $request->input('delivery_address');
+        $invoice_no = $request->input('invoice_no');
+        $delivery_charge = $request->input('delivery_charge');
+
+        date_default_timezone_set('Asia/Kolkata');
+        $request_time = date('h:i:sa');
+        $request_date = date('d-m-Y');
+
+        $cart_list = ProductCart::where('email', $email)->get();
+
+        foreach ($cart_list as $item) {
+            $cartDeleteResult = '';
+            $resultInsert = CartOrder::insert([
+                'invoice_no' => 'Easy'.$invoice_no,
+                'product_name' => $item['product_name'],
+                'product_code' => $item['product_code'],
+                'size' => $item['size'],
+                'colour' => $item['colour'],
+                'quantity' => $item['quantity'],
+                'unit_price' => $item['unit_price'],
+                'total_price' => $item['total_price'],
+                'email' => $item['email'],
+                'name' => $name,
+                'payment_method' => $payment_method,
+                'delivery_address' => $delivery_address,
+                'delivery_charge' => $delivery_charge,
+                'city' => $city,
+                'order_date' => $request_date,
+                'order_time' => $request_time,
+                'order_status' => 'Pending'
+            ]);
+
+            if($resultInsert) {
+                $resultDelete = ProductCart::where('id', $item['id'])->delete();
+
+                if($resultDelete) {
+                    $cartDeleteResult = 1;
+                } else {
+                    $cartDeleteResult = 0;
+                }
+            }
+        }
+
+        return $cartDeleteResult;
     }
 }
