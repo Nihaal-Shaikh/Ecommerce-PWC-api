@@ -127,6 +127,7 @@ class ProductCartController extends Controller
                 'unit_price' => $item['unit_price'],
                 'total_price' => $item['total_price'],
                 'email' => $item['email'],
+                'name' => $name,
                 'payment_method' => $payment_method,
                 'delivery_address' => $delivery_address,
                 'delivery_charge' => $delivery_charge,
