@@ -58,9 +58,6 @@ Route::get('/search/{key}', [ProductListController::class, 'SearchByProduct']);
 // Similar Products
 Route::get('/similar/{subCategory}',[ProductListController::class, 'SimilarProducts']);
 
-// Similar Products
-Route::get('/productReview/{id}',[ProductReviewController::class, 'ProductReviewList']);
-
 // Product Cart
 Route::post('/addToCart',[ProductCartController::class, 'AddToCart']);
 
@@ -96,6 +93,9 @@ Route::get('/orderListByUser/{email}',[ProductCartController::class, 'OrderListB
 
 // Product Review
 Route::post('/postReview',[ProductReviewController::class, 'PostReview']);
+
+// Product Review
+Route::get('/productReview/{product_code}',[ProductReviewController::class, 'ProductReviewList']);
 
 // Login
 Route::post('/login', [AuthController::class, 'Login']);
