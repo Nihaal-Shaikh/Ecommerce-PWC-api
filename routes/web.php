@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('admin.index');
     })->name('dashboard');
 });
+
+// Admin Logout
+Route::get('/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
