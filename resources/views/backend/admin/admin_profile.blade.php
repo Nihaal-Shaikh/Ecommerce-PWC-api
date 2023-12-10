@@ -91,9 +91,9 @@
                             </div>
                         </div>
                     </div>
-                    <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-lg-8">
+                    <div class="col-lg-8">
+                        <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                            @csrf
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -101,7 +101,8 @@
                                             <h6 class="mb-0">Full Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="name" value="{{ $adminData->name }}">
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $adminData->name }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -109,7 +110,8 @@
                                             <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" name="email" value="{{ $adminData->email }}">
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{ $adminData->email }}">
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -118,8 +120,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <img id="showImage"
-                                            src="{{ (!empty($adminData->profile_photo_path)) ? url('uploads/admin_images/'.$adminData->profile_photo_path) : url('uploads/no_image.jpg') }}"
-                                            style="width: 100px; height: 100px">
+                                            src="{{ (!empty($adminData->profile_photo_path))?url('uploads/admin_images/'.$adminData->profile_photo_path):url('uploads/no_image.jpg') }}"
+                                            style="width:100px; height: 100px;">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-3"></div>
@@ -129,8 +131,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,9 +146,9 @@
             reader.onload = function (e) {
                 $('#showImage').attr('src', e.target.result);
             }
-            reader.readAsDataURL(e.target.files['0']);
-        })
-    })
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
 </script>
 
 @endsection
