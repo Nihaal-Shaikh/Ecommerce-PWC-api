@@ -24,6 +24,9 @@
                     <div class="col-lg-12">
                         <form method="post" action="{{ route('change.password.update') }}">
                             @csrf
+                            @foreach ($errors->all() as $error)
+                            <p class="text-danger">{{ $error }}</p>
+                            @endforeach
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -31,8 +34,7 @@
                                             <h6 class="mb-0">Current Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input id="current_password" type="password" class="form-control" name="oldpassword"
-                                                value="">
+                                            <input id="current_password" type="password" class="form-control" name="oldpassword">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -40,8 +42,7 @@
                                             <h6 class="mb-0">New Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input id="password" type="password" class="form-control" name="password"
-                                                value="">
+                                            <input id="password" type="password" class="form-control" name="password">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -49,8 +50,7 @@
                                             <h6 class="mb-0">Confirm Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation"
-                                                value="">
+                                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
                                         </div>
                                     </div>
                                     <div class="row">
