@@ -35,7 +35,7 @@
 					<ul>
 						<li> <a href="{{ route('all.categories') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a>
 						</li>
-						<li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
+						<li> <a href="{{ route('add.category') }}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
 						</li>
 					</ul>
 				</li>

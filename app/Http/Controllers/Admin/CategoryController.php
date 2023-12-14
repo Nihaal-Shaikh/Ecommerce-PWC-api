@@ -33,4 +33,12 @@ class CategoryController extends Controller
 
         return view('backend.category.category_view', compact('categories'));
     }
+
+    public function AddCategory() {
+        return view('backend.category.category_add');
+    }
+
+    public function StoreCategory(Request $request) {
+        return view('backend.category.category_add');
+    }
 }
