@@ -33,6 +33,9 @@
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" name="category_name"
                                                 value="">
+                                                @error('category_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3">
