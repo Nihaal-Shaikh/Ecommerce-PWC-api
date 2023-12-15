@@ -130,4 +130,13 @@ class CategoryController extends Controller
 
         return redirect()->route('all.categories')->with($notification);
     }
+
+    public function EditCategory($id) {
+        $category = Category::findorFail($id);
+        return view('backend.category.category_edit', compact('category'));
+    }
+
+    public function UpdateCategory(Request $request) {
+
+    }
 }
