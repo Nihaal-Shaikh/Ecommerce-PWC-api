@@ -75,7 +75,7 @@
 					<ul>
 						<li> <a href="{{ route('all.products') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
 						</li>
-						<li> <a href="{{ route('add.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+						<li> <a href="{{ route('add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
 						</li>
 					</ul>
 				</li>

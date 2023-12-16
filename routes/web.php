@@ -75,7 +75,7 @@ Route::prefix('slider')->group(function () {
 Route::prefix('product')->group(function () {
 
     Route::get('/all', [ProductListController::class, 'GetAllProducts'])->name('all.products');
-    Route::get('/add', [HomeSliderController::class, 'AddSlider'])->name('add.slider');
+    Route::get('/add', [ProductListController::class, 'AddProduct'])->name('add.product');
     Route::post('/store', [HomeSliderController::class, 'StoreSlider'])->name('slider.store');
     Route::get('/edit/{id}', [HomeSliderController::class, 'EditSlider'])->name('slider.edit');
     Route::post('/update', [HomeSliderController::class, 'UpdateSlider'])->name('slider.update');
