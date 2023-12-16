@@ -66,4 +66,100 @@ class ProductListController extends Controller
         $subcategory = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         return view('backend.product.product_add', compact('category','subcategory'));
     }
+
+    public function StoreProduct(Request $request) {
+
+        $request ->validate([
+            'product_code' => 'required',
+        ] , [
+            'product_code.required' => 'Input product code'
+        ]);
+        
+        $save_url = '';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            // Specify the upload directory
+            $uploadPath = public_path('uploads/product/');
+
+            // Check if the directory exists, if not, create it
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+
+            // Move the uploaded file to the specified directory with the generated name
+            $image->move($uploadPath, $name_gen);
+
+            // Get the full path of the saved image
+            $savedImagePath = $uploadPath . $name_gen;
+
+            // Resize the image (if GD library is available)
+            if (extension_loaded('gd')) {
+                $imageInfo = getimagesize($savedImagePath);
+                $imageType = $imageInfo[2]; // Get the image type
+
+                // Create an image resource based on the image type
+                switch ($imageType) {
+                    case IMAGETYPE_JPEG:
+                        $sourceImage = imagecreatefromjpeg($savedImagePath);
+                        break;
+                    case IMAGETYPE_PNG:
+                        $sourceImage = imagecreatefrompng($savedImagePath);
+                        break;
+                    case IMAGETYPE_GIF:
+                        $sourceImage = imagecreatefromgif($savedImagePath);
+                        break;
+                    // Add cases for other image types if needed
+                    default:
+                        // Unsupported image type
+                        // You may handle this according to your needs
+                        break;
+                }
+
+                if (isset($sourceImage)) {
+                    $newWidth = 711;
+                    $newHeight = 960;
+                    $resized = imagecreatetruecolor($newWidth, $newHeight);
+                    imagecopyresampled($resized, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, imagesx($sourceImage), imagesy($sourceImage));
+
+                    // Save the resized image based on the original image type
+                    switch ($imageType) {
+                        case IMAGETYPE_JPEG:
+                            imagejpeg($resized, $savedImagePath);
+                            break;
+                        case IMAGETYPE_PNG:
+                            imagepng($resized, $savedImagePath);
+                            break;
+                        case IMAGETYPE_GIF:
+                            imagegif($resized, $savedImagePath);
+                            break;
+                        // Add cases for other image types if needed
+                        default:
+                            // Unsupported image type
+                            // You may handle this according to your needs
+                            break;
+                    }
+
+                    imagedestroy($resized);
+                    imagedestroy($sourceImage);
+                }
+            }
+
+            // Get the URL of the saved image
+            $save_url = 'http://127.0.0.1:8000/uploads/product/' . $name_gen; // Adjust the URL path accordingly
+        }
+
+        $product_id = ProductList::insertGetId([
+            'title' => $request->title,
+            'price' => $request->price,
+            'special_price' => $request->special_price,
+            'category' => $request->category,
+            'subcategory' => $request->subcategory,
+            'remark' => $request->remark,
+            'brand' => $request->brand,
+            'product_code' => $request->product_code,
+            'image' => $save_url
+        ])
+    }
 }

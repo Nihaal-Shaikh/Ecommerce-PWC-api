@@ -23,122 +23,125 @@
                 <h5 class="card-title">Add New Product</h5>
                 <hr>
                 <div class="form-body mt-4">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="border border-3 p-4 rounded">
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Title</label>
-                                    <input type="text" name="title" class="form-control" id="inputProductTitle" placeholder="Enter product title">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Code</label>
-                                    <input type="text" name="product_code" class="form-control" id="inputProductTitle" placeholder="Enter product title">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Product Thumbnail</label>
-                                    <input class="form-control" name="image" type="file" id="image">
-                                </div>
-                                <div class="mb-3">
-                                    <img id="showImage"
-                                        src="{{ (url('uploads/no_image.jpg')) }}"
-                                        style="width:100px; height: 100px;">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Image One</label>
-                                    <input class="form-control" name="image_one" type="file" id="image">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Image Two</label>
-                                    <input class="form-control" name="image_two" type="file" id="image">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Image Three</label>
-                                    <input class="form-control" name="image_three" type="file" id="image">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Image Four</label>
-                                    <input class="form-control" name="image_four" type="file" id="image">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Short Description</label>
-                                    <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Long Description</label>
-                                    <textarea id="mytextarea" name="long_description">Hello, World!</textarea>
+                    <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="border border-3 p-4 rounded">
+                                    <div class="mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Title</label>
+                                        <input type="text" name="title" class="form-control" id="inputProductTitle" placeholder="Enter product title">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Code</label>
+                                        <input type="text" name="product_code" class="form-control" id="inputProductTitle" placeholder="Enter product title">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Product Thumbnail</label>
+                                        <input class="form-control" name="image" type="file" id="image">
+                                    </div>
+                                    <div class="mb-3">
+                                        <img id="showImage"
+                                            src="{{ (url('uploads/no_image.jpg')) }}"
+                                            style="width:100px; height: 100px;">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Image One</label>
+                                        <input class="form-control" name="image_one" type="file" id="image">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Image Two</label>
+                                        <input class="form-control" name="image_two" type="file" id="image">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Image Three</label>
+                                        <input class="form-control" name="image_three" type="file" id="image">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Image Four</label>
+                                        <input class="form-control" name="image_four" type="file" id="image">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputProductDescription" class="form-label">Short Description</label>
+                                        <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputProductDescription" class="form-label">Long Description</label>
+                                        <textarea id="mytextarea" name="long_description">Hello, World!</textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="border border-3 p-4 rounded">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputPrice" class="form-label">Price</label>
-                                        <input type="text" name="price" class="form-control" id="inputPrice" placeholder="00.00">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputCompareatprice" class="form-label">Special Price</label>
-                                        <input type="text" name="special_price" class="form-control" id="inputCompareatprice" placeholder="00.00">
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="inputProductType" class="form-label">Product Category</label>
-                                        <select name="category" class="form-select" id="inputProductType">
-                                            <option selected>Select Category</option>
-                                            @foreach($category as $item)
-                                                <option value="{{ $item->category_name }}">{{ $item->category_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="inputProductType" class="form-label">Product Sub Category</label>
-                                        <select name="subcategory" class="form-select" id="inputProductType">
-                                            <option selected>Select Sub Category</option>
-                                            @foreach($subcategory as $item)
-                                                <option value="{{ $item->category_name }}">{{ $item->subcategory_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="inputCollection" class="form-label">Brand</label>
-                                        <select name="brand" class="form-select" id="inputCollection">
-                                            <option selected>Select Brand</option>
-                                            <option value="Apple">Apple</option>
-                                            <option value="Gucci">Gucci</option>
-                                            <option value="Oppo">Oppo</option>
-                                            <option value="Samsung">Samsung</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Product Size</label>
-                                        <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="S,M,L,XL">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Product Colour</label>
-                                        <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="Red, White, Black">
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="remark" type="checkbox" value="FEATURED" id="flexCheckFeatured">
-                                        <label class="form-check-label" for="flexCheckFeatured">FEATURED</label>
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="remark" type="checkbox" value="NEW" id="flexCheckNew">
-                                        <label class="form-check-label" for="flexCheckNew">NEW</label>
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="remark" type="checkbox" value="COLLECTION" id="flexCheckCollection">
-                                        <label class="form-check-label" for="flexCheckCollection">COLLECTION</label>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-grid">
-                                            <button type="button" class="btn btn-primary">Save Product</button>
+                            <div class="col-lg-4">
+                                <div class="border border-3 p-4 rounded">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="inputPrice" class="form-label">Price</label>
+                                            <input type="text" name="price" class="form-control" id="inputPrice" placeholder="00.00">
                                         </div>
-                                    </div>
-                                </div> 
+                                        <div class="col-md-6">
+                                            <label for="inputCompareatprice" class="form-label">Special Price</label>
+                                            <input type="text" name="special_price" class="form-control" id="inputCompareatprice" placeholder="00.00">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="inputProductType" class="form-label">Product Category</label>
+                                            <select name="category" class="form-select" id="inputProductType">
+                                                <option selected>Select Category</option>
+                                                @foreach($category as $item)
+                                                    <option value="{{ $item->category_name }}">{{ $item->category_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="inputProductType" class="form-label">Product Sub Category</label>
+                                            <select name="subcategory" class="form-select" id="inputProductType">
+                                                <option selected>Select Sub Category</option>
+                                                @foreach($subcategory as $item)
+                                                    <option value="{{ $item->category_name }}">{{ $item->subcategory_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="inputCollection" class="form-label">Brand</label>
+                                            <select name="brand" class="form-select" id="inputCollection">
+                                                <option selected>Select Brand</option>
+                                                <option value="Apple">Apple</option>
+                                                <option value="Gucci">Gucci</option>
+                                                <option value="Oppo">Oppo</option>
+                                                <option value="Samsung">Samsung</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Product Size</label>
+                                            <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="S,M,L,XL">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Product Colour</label>
+                                            <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="Red, White, Black">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="remark" type="checkbox" value="FEATURED" id="flexCheckFeatured">
+                                            <label class="form-check-label" for="flexCheckFeatured">FEATURED</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="remark" type="checkbox" value="NEW" id="flexCheckNew">
+                                            <label class="form-check-label" for="flexCheckNew">NEW</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="remark" type="checkbox" value="COLLECTION" id="flexCheckCollection">
+                                            <label class="form-check-label" for="flexCheckCollection">COLLECTION</label>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary">Save Product</button>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
