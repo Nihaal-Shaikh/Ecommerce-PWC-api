@@ -14,4 +14,14 @@ class HomeSliderController extends Controller
 
         return $result;
     }
+
+    public function GetAllSlider() {
+        $slider = HomeSlider::latest()->get();
+
+        return view('backend.slider.slider_view', compact('slider'));
+    }
+
+    public function AddSlider() {
+        return view('backend.slider.slider_add');
+    }
 }
