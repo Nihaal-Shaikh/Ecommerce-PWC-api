@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ImageProcessing;
 use App\Http\Controllers\Controller;
+use App\Models\ProductDetails;
 use Illuminate\Http\Request;
 use App\Models\ProductList;
 use App\Models\Category;
@@ -160,6 +162,30 @@ class ProductListController extends Controller
             'brand' => $request->brand,
             'product_code' => $request->product_code,
             'image' => $save_url
-        ])
+        ]);
+
+        $imageOneUrl = ImageProcessing::uploadAndResizeImage($request, 'image_one', 'uploads/productdetails/', 711, 960);
+        $imageTwoUrl = ImageProcessing::uploadAndResizeImage($request, 'image_two', 'uploads/productdetails/', 711, 960);
+        $imageThreeUrl = ImageProcessing::uploadAndResizeImage($request, 'image_three', 'uploads/productdetails/', 711, 960);
+        $imageFourUrl = ImageProcessing::uploadAndResizeImage($request, 'image_four', 'uploads/productdetails/', 711, 960);
+
+        ProductDetails::insert([
+            'product_id' => $product_id,
+            'image_one' => $imageOneUrl,
+            'image_two' => $imageTwoUrl,
+            'image_three' => $imageThreeUrl,
+            'image_four' => $imageFourUrl,
+            'short_description' => $request->short_description,
+            'color' => $request->color,
+            'size' => $request->size,
+            'long_description' => $request->long_description,
+        ]);
+        
+        $notification = array(
+            'message' => 'Product added successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.products')->with($notification);
     }
 }
