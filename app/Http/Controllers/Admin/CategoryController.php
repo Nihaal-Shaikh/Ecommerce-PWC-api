@@ -250,4 +250,71 @@ class CategoryController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    // Start Sub Category Methods
+
+    public function AllSubCategories() {
+        $subcategories = SubCategory::latest()->get();
+
+        return view('backend.subcategory.subcategory_view', compact('subcategories'));
+    }
+    
+    public function AddSubCategory() {
+        $category = Category::latest()->get();
+        return view('backend.subcategory.subcategory_add', compact('category'));
+    }
+
+    public function StoreSubCategory(Request $request) {
+        $request ->validate([
+            'subcategory_name' => 'required',
+        ] , [
+            'category_name.required' => 'Input subcategory name'
+        ]);
+
+        SubCategory::insert([
+            'category_name' => $request->category_name,
+            'subcategory_name' => $request->subcategory_name
+        ]);
+        
+        $notification = array(
+            'message' => 'Sub Category added successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.subcategories')->with($notification);
+    }
+
+    public function EditSubCategory($id) {
+        $category = Category::orderBy('category_name', 'ASC')->get();
+        $subcategory = SubCategory::findOrFail($id);
+
+        return view('backend.subcategory.subcategory_edit', compact('category','subcategory'));
+    }
+
+    public function UpdateSubCategory(Request $request) {
+        $subcategory_id = $request->id;
+
+        SubCategory::findOrFail($subcategory_id)->update([
+            'category_name' => $request->category_name,
+            'subcategory_name' => $request->subcategory_name
+        ]);
+        
+        $notification = array(
+            'message' => 'Sub Category updated successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.subcategories')->with($notification);
+    }
+
+    public function DeleteSubCategory($id) {
+        SubCategory::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Sub Category deleted successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
