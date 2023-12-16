@@ -306,4 +306,15 @@ class CategoryController extends Controller
 
         return redirect()->route('all.subcategories')->with($notification);
     }
+
+    public function DeleteSubCategory($id) {
+        SubCategory::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Sub Category deleted successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
