@@ -22,14 +22,17 @@
             <div class="main-body">
                 <div class="row">
                     <div class="col-lg-8">
-                        <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('slider.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card">
                                 <div class="card-body">
                                     <h6>Slider Image</h6>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Upload Slider Image</label>
-                                        <input class="form-control" name="category_image" type="file" id="image">
+                                        <input class="form-control" name="slider_image" type="file" id="image">
+                                            @error('slider_image')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                     </div>
                                     <div class="mb-3">
                                         <img id="showImage"
