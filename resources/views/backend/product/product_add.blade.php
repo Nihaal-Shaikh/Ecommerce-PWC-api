@@ -15,21 +15,6 @@
                     </ol>
                 </nav>
             </div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Settings</button>
-                    <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                        <a class="dropdown-item" href="javascript:;">Action</a>
-                        <a class="dropdown-item" href="javascript:;">Another action</a>
-                        <a class="dropdown-item" href="javascript:;">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:;">Separated link</a>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- End Breadcrumb -->
 
@@ -43,23 +28,44 @@
                             <div class="border border-3 p-4 rounded">
                                 <div class="mb-3">
                                     <label for="inputProductTitle" class="form-label">Product Title</label>
-                                    <input type="email" class="form-control" id="inputProductTitle" placeholder="Enter product title">
+                                    <input type="text" name="title" class="form-control" id="inputProductTitle" placeholder="Enter product title">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                    <label for="inputProductTitle" class="form-label">Product Code</label>
+                                    <input type="text" name="product_code" class="form-control" id="inputProductTitle" placeholder="Enter product title">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Product Images</label>
-                                    <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple="" style="display: none;">
-                                    <div class="imageuploadify well">
-                                        <div class="imageuploadify-overlay"><i class="fa fa-picture-o"></i></div>
-                                        <div class="imageuploadify-images-list text-center">
-                                            <i class="bx bxs-cloud-upload"></i>
-                                            <span class="imageuploadify-message">Drag&amp;Drop Your File(s)Here To Upload</span>
-                                            <button type="button" class="btn btn-default">or select file to upload</button>
-                                        </div>
-                                    </div>
+                                    <label for="formFile" class="form-label">Product Thumbnail</label>
+                                    <input class="form-control" name="image" type="file" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="showImage"
+                                        src="{{ (url('uploads/no_image.jpg')) }}"
+                                        style="width:100px; height: 100px;">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Image One</label>
+                                    <input class="form-control" name="image_one" type="file" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Image Two</label>
+                                    <input class="form-control" name="image_two" type="file" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Image Three</label>
+                                    <input class="form-control" name="image_three" type="file" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Image Four</label>
+                                    <input class="form-control" name="image_four" type="file" id="image">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputProductDescription" class="form-label">Short Description</label>
+                                    <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputProductDescription" class="form-label">Long Description</label>
+                                    <textarea id="mytextarea" name="long_description">Hello, World!</textarea>
                                 </div>
                             </div>
                         </div>
@@ -68,10 +74,62 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="inputPrice" class="form-label">Price</label>
-                                        <input type="email" class="form-control" id="inputPrice" placeholder="00.00">
+                                        <input type="text" name="price" class="form-control" id="inputPrice" placeholder="00.00">
                                     </div>
-                                    <!-- Other form inputs -->
-                                    <!-- ... -->
+                                    <div class="col-md-6">
+                                        <label for="inputCompareatprice" class="form-label">Special Price</label>
+                                        <input type="text" name="special_price" class="form-control" id="inputCompareatprice" placeholder="00.00">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputProductType" class="form-label">Product Category</label>
+                                        <select name="category" class="form-select" id="inputProductType">
+                                            <option selected>Select Category</option>
+                                            @foreach($category as $item)
+                                                <option value="{{ $item->category_name }}">{{ $item->category_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputProductType" class="form-label">Product Sub Category</label>
+                                        <select name="subcategory" class="form-select" id="inputProductType">
+                                            <option selected>Select Sub Category</option>
+                                            @foreach($subcategory as $item)
+                                                <option value="{{ $item->category_name }}">{{ $item->subcategory_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputCollection" class="form-label">Brand</label>
+                                        <select name="brand" class="form-select" id="inputCollection">
+                                            <option selected>Select Brand</option>
+                                            <option value="Apple">Apple</option>
+                                            <option value="Gucci">Gucci</option>
+                                            <option value="Oppo">Oppo</option>
+                                            <option value="Samsung">Samsung</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Product Size</label>
+                                        <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="S,M,L,XL">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Product Colour</label>
+                                        <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="Red, White, Black">
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="remark" type="checkbox" value="FEATURED" id="flexCheckFeatured">
+                                        <label class="form-check-label" for="flexCheckFeatured">FEATURED</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="remark" type="checkbox" value="NEW" id="flexCheckNew">
+                                        <label class="form-check-label" for="flexCheckNew">NEW</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="remark" type="checkbox" value="COLLECTION" id="flexCheckCollection">
+                                        <label class="form-check-label" for="flexCheckCollection">COLLECTION</label>
+                                    </div>
                                     <div class="col-12">
                                         <div class="d-grid">
                                             <button type="button" class="btn btn-primary">Save Product</button>
@@ -98,5 +156,12 @@
         });
     });
 </script>
+<script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#mytextarea'
+    });
+</script>
+
 
 @endsection
