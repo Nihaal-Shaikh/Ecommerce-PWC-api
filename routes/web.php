@@ -106,7 +106,7 @@ Route::prefix('order')->group(function () {
     Route::get('/pending', [ProductCartController::class, 'PendingOrders'])->name('pending.orders');
     Route::get('/processing', [ProductCartController::class, 'ProcessingOrders'])->name('processing.orders');
     Route::get('/completed', [ProductCartController::class, 'CompletedOrders'])->name('completed.orders');
-    Route::get('/add', [ProductListController::class, 'AddProduct'])->name('add.product');
+    Route::get('/details/{id}', [ProductCartController::class, 'OrderDetails'])->name('order.details');
     Route::post('/store', [ProductListController::class, 'StoreProduct'])->name('product.store');
     Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
     Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
