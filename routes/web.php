@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SiteInfoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,12 @@ Route::middleware([
         return view('admin.index');
     })->name('dashboard');
 });
+
+// Admin register
+
+Route::get('/register', [RegisteredUserController::class, 'create'])
+    ->middleware(['guest'])
+    ->name('register');
 
 // Admin Logout
 Route::get('/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
