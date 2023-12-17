@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductListController;
 use Illuminate\Support\Facades\Route;
@@ -81,3 +82,6 @@ Route::prefix('product')->group(function () {
     Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
     Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
 });
+
+// Contact message route
+Route::get('/all/message', [ContactController::class, 'GetAllMessage'])->name('contact.message');
