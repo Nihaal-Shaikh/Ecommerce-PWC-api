@@ -196,4 +196,52 @@ class ProductListController extends Controller
         $details = ProductDetails::where('product_id', $id)->get();
         return view('backend.product.product_edit', compact('category','subcategory', 'product', 'details'));
     }
+
+    public function UpdateProduct(Request $request) {
+        $mainImageUrl = ImageProcessing::uploadAndResizeImage($request, 'image', 'uploads/product/', 711, 960);
+
+        $productList = ProductList::findOrFail($request->id);
+        $updateData = [
+            'title' => $request->title,
+            'price' => $request->price,
+            'special_price' => $request->special_price,
+            'category' => $request->category,
+            'subcategory' => $request->subcategory,
+            'remark' => $request->remark,
+            'brand' => $request->brand,
+            'product_code' => $request->product_code,
+        ];
+
+        if ($request->hasFile('image')) {
+            $updateData['image'] = $mainImageUrl;
+        }
+        
+        $productList->update($updateData);
+
+        $updateDataTwo = [
+            'product_id' => $request->id,
+            'short_description' => $request->short_description,
+            'color' => $request->color,
+            'size' => $request->size,
+            'long_description' => $request->long_description,
+        ];
+    
+        $imageFields = ['image_one', 'image_two', 'image_three', 'image_four'];
+
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $imageUrl = ImageProcessing::uploadAndResizeImage($request, $field, 'uploads/productdetails/', 711, 960);
+                $updateDataTwo[$field] = $imageUrl;
+            }
+        }
+
+        ProductDetails::where('product_id', $request->id)->update($updateDataTwo);
+        
+        $notification = array(
+            'message' => 'Product updated successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.products')->with($notification);
+    }
 }

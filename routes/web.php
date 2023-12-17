@@ -78,6 +78,6 @@ Route::prefix('product')->group(function () {
     Route::get('/add', [ProductListController::class, 'AddProduct'])->name('add.product');
     Route::post('/store', [ProductListController::class, 'StoreProduct'])->name('product.store');
     Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
-    Route::post('/update', [HomeSliderController::class, 'UpdateSlider'])->name('slider.update');
+    Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
     Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
 });

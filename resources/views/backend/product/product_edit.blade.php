@@ -23,8 +23,9 @@
                 <h5 class="card-title">Edit Product</h5>
                 <hr>
                 <div class="form-body mt-4">
-                    <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('product.update') }}" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="id" value="{{ $product->id }}">
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="border border-3 p-4 rounded">
@@ -61,14 +62,16 @@
                                         <label for="formFile" class="form-label">Image Four</label>
                                         <input class="form-control" name="image_four" type="file" id="image">
                                     </div>
+                                    @foreach($details as $item)
                                     <div class="mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description</label>
-                                        <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                        <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3">{{ $item->short_description }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputProductDescription" class="form-label">Long Description</label>
-                                        <textarea id="mytextarea" name="long_description">Hello, World!</textarea>
+                                        <textarea id="mytextarea" name="long_description">{{ $item->long_description }}</textarea>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -96,7 +99,7 @@
                                             <select name="subcategory" class="form-select" id="inputProductType">
                                                 <option selected>Select Sub Category</option>
                                                 @foreach($subcategory as $item)
-                                                    <option value="{{ $item->category_name }}" {{ $item->subcategory_name == $product->subcategory ? 'selected' : '' }}>{{ $item->subcategory_name }}</option>
+                                                    <option value="{{ $item->subcategory_name }}" {{ $item->subcategory_name == $product->subcategory ? 'selected' : '' }}>{{ $item->subcategory_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -104,20 +107,24 @@
                                             <label for="inputCollection" class="form-label">Brand</label>
                                             <select name="brand" class="form-select" id="inputCollection">
                                                 <option selected>Select Brand</option>
-                                                <option value="Apple">Apple</option>
-                                                <option value="Gucci">Gucci</option>
-                                                <option value="Oppo">Oppo</option>
-                                                <option value="Samsung">Samsung</option>
+                                                <option value="Apple" {{ $product->brand == 'Apple' ? 'selected' : '' }}>Apple</option>
+                                                <option value="Gucci" {{ $product->brand == 'Gucci' ? 'selected' : '' }}>Gucci</option>
+                                                <option value="Oppo" {{ $product->brand == 'Oppo' ? 'selected' : '' }}>Oppo</option>
+                                                <option value="Samsung" {{ $product->brand == 'Samsung' ? 'selected' : '' }}>Samsung</option>
+                                                <option value="Asus" {{ $product->brand == 'Asus' ? 'selected' : '' }}>Asus</option>
+                                                <option value="OnePlus" {{ $product->brand == 'OnePlus' ? 'selected' : '' }}>OnePlus</option>
                                             </select>
                                         </div>
+                                        @foreach($details as $item)
                                         <div class="mb-3">
                                             <label class="form-label">Product Size</label>
-                                            <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="S,M,L,XL">
+                                            <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="{{ $item->size }}">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Product Colour</label>
-                                            <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="Red, White, Black">
+                                            <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="{{ $item->color }}">
                                         </div>
+                                        @endforeach
                                         <div class="form-check">
                                             <input class="form-check-input" name="remark" type="checkbox" value="FEATURED" id="flexCheckFeatured" {{ $product->remark == 'FEATURED' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="flexCheckFeatured">FEATURED</label>
@@ -134,7 +141,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary">Save Product</button>
+                                                <button type="submit" class="btn btn-primary">Update Product</button>
                                             </div>
                                         </div>
                                     </div> 
