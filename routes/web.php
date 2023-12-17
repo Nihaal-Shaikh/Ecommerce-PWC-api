@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ProductReviewController;
 use App\Http\Controllers\Admin\SiteInfoController;
@@ -98,3 +99,15 @@ Route::get('/review/delete/{id}', [ProductReviewController::class, 'DeleteReview
 // Site Info
 Route::get('/getsite/info', [SiteInfoController::class, 'GetSiteInfo'])->name('getsite.info');
 Route::post('/update/siteinfo', [SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo');
+
+//
+Route::prefix('order')->group(function () {
+
+    Route::get('/pending', [ProductCartController::class, 'PendingOrders'])->name('pending.orders');
+    Route::get('/processing', [ProductCartController::class, 'ProcessingOrders'])->name('processing.orders');
+    Route::get('/completed', [ProductCartController::class, 'CompletedOrders'])->name('completed.orders');
+    Route::get('/details/{id}', [ProductCartController::class, 'OrderDetails'])->name('order.details');
+    Route::get('/status/processing/{id}', [ProductCartController::class, 'PendingToProcess'])->name('pending.process');
+    Route::get('/status/complete/{id}', [ProductCartController::class, 'ProcessingToComplete'])->name('process.complete');
+    Route::get('/delete/{id}', [ProductCartController::class, 'OrderDelete'])->name('order.delete');
+});
