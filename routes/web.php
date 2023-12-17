@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\ProductListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -68,5 +69,15 @@ Route::prefix('slider')->group(function () {
     Route::post('/store', [HomeSliderController::class, 'StoreSlider'])->name('slider.store');
     Route::get('/edit/{id}', [HomeSliderController::class, 'EditSlider'])->name('slider.edit');
     Route::post('/update', [HomeSliderController::class, 'UpdateSlider'])->name('slider.update');
+    Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
+});
+
+Route::prefix('product')->group(function () {
+
+    Route::get('/all', [ProductListController::class, 'GetAllProducts'])->name('all.products');
+    Route::get('/add', [ProductListController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store', [ProductListController::class, 'StoreProduct'])->name('product.store');
+    Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
+    Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
     Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
 });
