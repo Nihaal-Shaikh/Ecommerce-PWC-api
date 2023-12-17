@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ProductReviewController;
 use App\Http\Controllers\Admin\SiteInfoController;
@@ -98,3 +99,14 @@ Route::get('/review/delete/{id}', [ProductReviewController::class, 'DeleteReview
 // Site Info
 Route::get('/getsite/info', [SiteInfoController::class, 'GetSiteInfo'])->name('getsite.info');
 Route::post('/update/siteinfo', [SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo');
+
+//
+Route::prefix('order')->group(function () {
+
+    Route::get('/pending', [ProductCartController::class, 'PendingOrders'])->name('pending.orders');
+    Route::get('/add', [ProductListController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store', [ProductListController::class, 'StoreProduct'])->name('product.store');
+    Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
+    Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
+    Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
+});
