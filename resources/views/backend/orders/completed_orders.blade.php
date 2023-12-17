@@ -39,7 +39,7 @@
                                 <td>{{ $item->order_date }}</td>
                                 <td><strong><span class="text-danger">{{ $item->order_status }}</span></strong></td>
                                 <td>
-                                    <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info">Details</a>
+                                    <a href="{{ route('order.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

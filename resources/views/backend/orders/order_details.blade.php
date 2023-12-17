@@ -53,9 +53,9 @@
                                     <li class="list-group-item"><strong><span class="text-dark">Order Status: </span></strong><span class="badge badge-pill" style="background: #FF0000;">{{$order->order_status }}</span></li>
                                     <br>
                                     @if($order->order_status == 'Pending')
-                                    <a href="" class="btn btn-block btn-success">Process Order</a>
+                                    <a href="{{ route('pending.process', $order->id) }}" class="btn btn-block btn-success">Process Order</a>
                                     @elseif($order->order_status == 'Processing')
-                                    <a href="" class="btn btn-block btn-success">Complete Order</a>
+                                    <a href="{{ route('process.complete', $order->id) }}" class="btn btn-block btn-success">Complete Order</a>
                                     @endif
                                     </ul>
                                 </div>

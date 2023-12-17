@@ -107,8 +107,7 @@ Route::prefix('order')->group(function () {
     Route::get('/processing', [ProductCartController::class, 'ProcessingOrders'])->name('processing.orders');
     Route::get('/completed', [ProductCartController::class, 'CompletedOrders'])->name('completed.orders');
     Route::get('/details/{id}', [ProductCartController::class, 'OrderDetails'])->name('order.details');
-    Route::post('/store', [ProductListController::class, 'StoreProduct'])->name('product.store');
-    Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
-    Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
-    Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
+    Route::get('/status/processing/{id}', [ProductCartController::class, 'PendingToProcess'])->name('pending.process');
+    Route::get('/status/complete/{id}', [ProductCartController::class, 'ProcessingToComplete'])->name('process.complete');
+    Route::get('/delete/{id}', [ProductCartController::class, 'OrderDelete'])->name('order.delete');
 });
