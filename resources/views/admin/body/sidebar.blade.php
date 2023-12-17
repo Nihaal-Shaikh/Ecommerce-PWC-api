@@ -114,9 +114,9 @@
 					<ul>
 						<li> <a href="{{ route('pending.orders') }}"><i class="bx bx-right-arrow-alt"></i>Pending Orders</a>
 						</li>
-						<li> <a href="form-input-group.html"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a>
+						<li> <a href="{{ route('processing.orders') }}"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a>
 						</li>
-						<li> <a href="form-layouts.html"><i class="bx bx-right-arrow-alt"></i>Completed Orders</a>
+						<li> <a href="{{ route('completed.orders') }}"><i class="bx bx-right-arrow-alt"></i>Completed Orders</a>
 						</li>
 					</ul>
 				</li>

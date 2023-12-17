@@ -165,4 +165,16 @@ class ProductCartController extends Controller
 
         return view('backend.orders.pending_orders', compact('orders'));
     }
+
+    public function ProcessingOrders () {
+        $orders = CartOrder::where('order_status','Processing')->orderBy('id', 'DESC')->get();
+
+        return view('backend.orders.processing_orders', compact('orders'));
+    }
+
+    public function CompletedOrders () {
+        $orders = CartOrder::where('order_status','Complete')->orderBy('id', 'DESC')->get();
+
+        return view('backend.orders.completed_orders', compact('orders'));
+    }
 }
