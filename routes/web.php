@@ -97,3 +97,4 @@ Route::get('/review/delete/{id}', [ProductReviewController::class, 'DeleteReview
 
 // Site Info
 Route::get('/getsite/info', [SiteInfoController::class, 'GetSiteInfo'])->name('getsite.info');
+Route::post('/update/siteinfo', [SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo');

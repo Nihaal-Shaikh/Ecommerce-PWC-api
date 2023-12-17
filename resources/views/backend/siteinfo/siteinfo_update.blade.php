@@ -22,8 +22,9 @@
             <div class="main-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form method="post" action="{{ route('change.password.update') }}">
+                        <form method="post" action="{{ route('update.siteinfo') }}">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $siteinfo->id }}">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -39,7 +40,7 @@
                                             <h6 class="mb-0">Refund Policy</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <textarea class="myTextArea" name="about">{{ $siteinfo->refund }}</textarea>
+                                        <textarea class="myTextArea" name="refund">{{ $siteinfo->refund }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -47,7 +48,7 @@
                                             <h6 class="mb-0">How to Purchase</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <textarea class="myTextArea" name="about">{{ $siteinfo->purchase_guide }}</textarea>
+                                        <textarea class="myTextArea" name="purchase_guide">{{ $siteinfo->purchase_guide }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -55,7 +56,7 @@
                                             <h6 class="mb-0">Privacy Policy</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <textarea class="myTextArea" name="about">{{ $siteinfo->privacy }}</textarea>
+                                        <textarea class="myTextArea" name="privacy">{{ $siteinfo->privacy }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -63,7 +64,7 @@
                                             <h6 class="mb-0">Address</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <textarea class="myTextArea" name="about">{{ $siteinfo->address }}</textarea>
+                                        <textarea class="myTextArea" name="address">{{ $siteinfo->address }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
