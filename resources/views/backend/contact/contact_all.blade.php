@@ -35,7 +35,7 @@
                                 <td>{{ $item->message }}</td>
                                 <td>{{ $item->contact_date }}</td>
                                 <td>
-                                    <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                    <a href="{{ route('message.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

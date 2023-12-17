@@ -85,3 +85,4 @@ Route::prefix('product')->group(function () {
 
 // Contact message route
 Route::get('/all/message', [ContactController::class, 'GetAllMessage'])->name('contact.message');
+Route::get('/message/delete/{id}', [ContactController::class, 'DeleteMessage'])->name('message.delete');

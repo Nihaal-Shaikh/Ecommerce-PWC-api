@@ -35,4 +35,15 @@ class ContactController extends Controller
 
         return view('backend.contact.contact_all', compact('message'));
     }
+
+    public function DeleteMessage($id) {
+        Contact::findOrfail($id)->delete();
+            
+        $notification = array(
+            'message' => 'Message deleted successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
