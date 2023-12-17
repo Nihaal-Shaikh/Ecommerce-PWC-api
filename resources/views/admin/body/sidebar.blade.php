@@ -78,26 +78,29 @@
 						<li> <a href="{{ route('add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
 						</li>
 					</ul>
-						<li>
-							<a href="{{ route('contact.message') }}">
-								<div class="parent-icon"><i class="bx bx-donate-blood"></i>
-								</div>
-								<div class="menu-title">Contact Message</div>
-							</a>
-						</li>
+				<li>
+					<a href="{{ route('contact.message') }}">
+						<div class="parent-icon"><i class="bx bx-donate-blood"></i>
+						</div>
+						<div class="menu-title">Contact Message</div>
+					</a>
+				</li>
+				<li>
+					<a href="{{ route('all.reviews') }}">
+						<div class="parent-icon"><i class="bx bx-donate-blood"></i>
+						</div>
+						<div class="menu-title">Product Review</div>
+					</a>
+				</li>
 				</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"> <i class="bx bx-donate-blood"></i>
 						</div>
-						<div class="menu-title">Icons</div>
+						<div class="menu-title">Site Info</div>
 					</a>
 					<ul>
-						<li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
-						</li>
-						<li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
-						</li>
-						<li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
+						<li> <a href="{{ route('getsite.info') }}"><i class="bx bx-right-arrow-alt"></i>Get Site Info</a>
 						</li>
 					</ul>
 				</li>
