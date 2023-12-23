@@ -19,7 +19,7 @@
                             <tr>
                                 <th>Sr. No.</th>
                                 <th>Product Image</th>
-                                <th>Category Name</th>
+                                <th>Product Name</th>
                                 <th>Product Code</th>
                                 <th>Product Category</th>
                                 <th>Action</th>
@@ -38,12 +38,12 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ $item->title }}</td>
+                                <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{ $item->title }}</td>
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->category }}</td>
                                 <td>
                                     <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                    <a href="{{ route('product.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

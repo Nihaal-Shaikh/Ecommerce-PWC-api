@@ -90,7 +90,7 @@ Route::prefix('product')->group(function () {
     Route::post('/store', [ProductListController::class, 'StoreProduct'])->name('product.store');
     Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
     Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
-    Route::get('/delete/{id}', [HomeSliderController::class, 'DeleteSlider'])->name('slider.delete');
+    Route::get('/delete/{id}', [ProductListController::class, 'DeleteProduct'])->name('product.delete');
 });
 
 // Contact Message

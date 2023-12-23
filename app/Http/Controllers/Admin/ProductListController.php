@@ -244,4 +244,19 @@ class ProductListController extends Controller
 
         return redirect()->route('all.products')->with($notification);
     }
+
+    public function DeleteProduct($id) {
+
+        ProductList::findOrFail($id)->delete();
+        ProductDetails::where('product_id', $id)->delete();
+        
+
+        $notification = array(
+            'message' => 'Product deleted successfully.',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
 }

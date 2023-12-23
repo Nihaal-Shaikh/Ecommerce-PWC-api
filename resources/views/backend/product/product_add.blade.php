@@ -96,7 +96,7 @@
                                             <select name="subcategory" class="form-select" id="inputProductType">
                                                 <option selected>Select Sub Category</option>
                                                 @foreach($subcategory as $item)
-                                                    <option value="{{ $item->category_name }}">{{ $item->subcategory_name }}</option>
+                                                    <option value="{{ $item->subcategory_name }}">{{ $item->subcategory_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
